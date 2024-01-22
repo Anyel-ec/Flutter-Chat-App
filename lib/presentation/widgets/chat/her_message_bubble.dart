@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-
+// importar message 
 class HerMessageBubble extends StatelessWidget {
-  const HerMessageBubble({super.key});
 
+
+  const HerMessageBubble({super.key});
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;

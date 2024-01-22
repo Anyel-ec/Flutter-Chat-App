@@ -1,5 +1,6 @@
 import 'package:chat_app/presentation/widgets/chat/her_message_bubble.dart';
 import 'package:chat_app/presentation/widgets/chat/my_message_bubble.dart';
+import 'package:chat_app/presentation/widgets/shared/message_field_box.dart';
 import 'package:flutter/material.dart';
 
 class ChatScreen extends StatelessWidget {
@@ -18,14 +19,12 @@ class ChatScreen extends StatelessWidget {
         title: const Text('Chat'),
         centerTitle: true,
       ),
-      body:  _ChatView(),
+      body: _ChatView(),
     );
   }
 }
 
 class _ChatView extends StatelessWidget {
-  
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -33,13 +32,22 @@ class _ChatView extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Column(
           children: [
-            Expanded(child: ListView.builder(
-              itemCount: 100,
-              itemBuilder: (BuildContext context, int index) {
-                return ( index % 2 == 0 ) ? const MyMessageBubble() : const HerMessageBubble();
-              },
-            ),),
-            const Text('Hola'),
+            Expanded(
+              child: ListView.builder(
+                itemCount: 100,
+                itemBuilder: (BuildContext context, int index) {
+                
+                  return (index % 2 == 0)
+                      ? const MyMessageBubble()
+                      : const HerMessageBubble();
+                },
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            // caja de texto de mensaje
+            const MessageFieldBox(),
           ],
         ),
       ),
