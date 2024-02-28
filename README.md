@@ -10,7 +10,7 @@ This is a Flutter application for a chat app that consumes an API to provide Yes
 ### Home Chat, answer
 ![ERD Diagram](docs/home.PNG)
 ### Home Chat, No answer
-![ERD Diagram](docs/home1.PNG)
+![ERD Diagram](docs/Home1.PNG)
 
 ## Features
 
