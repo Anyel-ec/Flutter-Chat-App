@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class ChatProvider extends ChangeNotifier {
   final chatScrollController = ScrollController();
-  final getYesNoAnswer = GetYesNoAnswer();
+  final  getYesNoAnswer = GetYesNoAnswer();
 
   
   List<Message> messageList = [
@@ -20,7 +20,7 @@ class ChatProvider extends ChangeNotifier {
     messageList.add(newMessage);
 
     if (text.endsWith('?')) {
-      herReply();
+       herReply();
     }
     
     //message.add(Message(text: text, fromWho: FromWho.me));

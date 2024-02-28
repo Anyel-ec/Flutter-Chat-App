@@ -1,9 +1,11 @@
+import 'package:chat_app/domain/entities/message.dart';
 import 'package:flutter/material.dart';
-// importar message 
+
+// importar message
 class HerMessageBubble extends StatelessWidget {
+  final Message message;
+  const HerMessageBubble({Key? key, required this.message}) : super(key: key);
 
-
-  const HerMessageBubble({super.key});
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
@@ -13,11 +15,11 @@ class HerMessageBubble extends StatelessWidget {
         Container(
           decoration: BoxDecoration(
               color: colors.secondary, borderRadius: BorderRadius.circular(20)),
-          child: const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: Text(
-              'Hola Anyel EC',
-              style: TextStyle(color: Colors.white),
+              message.text,
+              style: const TextStyle(color: Colors.white),
             ),
           ),
         ),
@@ -25,7 +27,7 @@ class HerMessageBubble extends StatelessWidget {
           height: 5,
         ),
         // todo: imagen
-        _ImageBubble(),
+        _ImageBubble( message.imageUrl!  ),
 
         const SizedBox(
           height: 5,
@@ -36,6 +38,8 @@ class HerMessageBubble extends StatelessWidget {
 }
 
 class _ImageBubble extends StatelessWidget {
+  final String imageUrl;
+  const _ImageBubble(this.imageUrl);
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -43,20 +47,21 @@ class _ImageBubble extends StatelessWidget {
     return ClipRRect(
         borderRadius: BorderRadius.circular(20),
         child: Image.network(
-          'https://yesno.wtf/assets/yes/3-422e51268d64d78241720a7de52fe121.gif',
-          width: size.width * 0.5, // 50% del ancho de la pantalla
-          height: size.height * 0.3, // 30% del alto de la pantalla
-          fit: BoxFit.cover,
-          // icono para cuando se está cargando la imagen
-          loadingBuilder: (BuildContext context, Widget child,
-              // si se está cargando la imagen
-              ImageChunkEvent? loadingProgress) {
-            // si no se está cargando la imagen
-            if (loadingProgress == null) return child;
-            return const Center( // centrar el icono
-              child: CircularProgressIndicator(), // icono de carga
-            );
-          }
-        ));
+            imageUrl,
+            width: size.width * 0.5, // 50% del ancho de la pantalla
+            height: size.height * 0.3, // 30% del alto de la pantalla
+            fit: BoxFit.cover,
+            // icono para cuando se está cargando la imagen
+            loadingBuilder: (BuildContext context,
+                Widget child,
+                // si se está cargando la imagen
+                ImageChunkEvent? loadingProgress) {
+          // si no se está cargando la imagen
+          if (loadingProgress == null) return child;
+          return const Center(
+            // centrar el icono
+            child: CircularProgressIndicator(), // icono de carga
+          );
+        }));
   }
 }
